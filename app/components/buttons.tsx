@@ -36,4 +36,6 @@ export function SignOutButton() {
             Sign Out
         </button>);
     }
+
+    return null; 
 }
