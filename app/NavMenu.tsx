@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import styles from './NavMenu.module.css';
-import { SignInButton } from './components/buttons';
+import { SignInButton, SignOutButton } from './components/buttons';
 
 
 
@@ -30,7 +30,9 @@ export default function NavMenu() {
                 <li>
                     <SignInButton />
                 </li>
-
+                <li>
+                    <SignOutButton />
+                </li>
 
             </ul>
         </nav>

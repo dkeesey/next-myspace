@@ -18,8 +18,8 @@ export function SignInButton() {
                 <Image
                     src={session.user?.image ?? '/mememan.webp'}
                     alt="Profile Picture"
-                    width={32}
-                    height={32}
+                    width={64}
+                    height={64}
                 />
             </Link>
         );
@@ -30,5 +30,10 @@ export function SignInButton() {
 }
 
 export function SignOutButton() {
-    return <button onClick={ ()=> signOut()} ></button>;
+    const { data: session, status } = useSession();
+    if (status === 'authenticated') {
+        return (<button onClick={() => signOut()} >
+            Sign Out
+        </button>);
+    }
 }
