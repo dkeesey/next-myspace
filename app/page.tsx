@@ -5,7 +5,7 @@ import { getServerSession } from 'next-auth'
 import { redirect } from 'next/navigation'
 
 export default async function Home() {
-  const session = await getServerSession()
+  const session = await getServerSession();
 
   if (!session) {
     // redirect('/api/auth/signin');
@@ -15,7 +15,7 @@ export default async function Home() {
     
   return (
     <main className={styles.main}>
-      {{ session }}
+      <h1 className={styles.title}>I think you're logged in?</h1>
     </main>
   )
     
