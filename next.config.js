@@ -3,6 +3,7 @@ const nextConfig = {
     experimental: {
         // optimizeFonts: true,
         // optimizeImages: true,
+        serverActions: true, 
         appDir: true,
     },
     images: {
