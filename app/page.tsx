@@ -8,9 +8,9 @@ export default async function Home() {
   const session = await getServerSession();
 
   if (!session) {
-    // redirect('/api/auth/signin');
-    console.log(session);
-    return <div>You must be signed in...</div>
+    // // redirect('/api/auth/signin');
+    // console.log(session);
+    // return <div>You must be signed in...</div>
   } 
     
   return (
