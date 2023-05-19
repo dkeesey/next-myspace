@@ -41,7 +41,6 @@ model Session {
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
-
 model User {
   id            String    @id @default(cuid())
   name          String?
@@ -52,6 +51,17 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
+  followedBy    Follows[] @relation("following")
+  following     Follows[] @relation("follower")
+}
+
+model Follows {
+  follower    User @relation("follower", fields: [followerId], references: [id])
+  followerId  String
+  following   User @relation("following", fields: [followingId], references: [id])
+  followingId String
+
+  @@id([followerId, followingId])
 }
 
 model VerificationToken {
