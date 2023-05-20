@@ -1,23 +1,29 @@
-import Image from 'next/image'
-import { Roboto } from 'next/font/google'
-import styles from './page.module.css'
-import { getServerSession } from 'next-auth'
-import { redirect } from 'next/navigation'
+import UserCard from '@/components/UserCard/UserCard';
+import styles from './page.module.css';
+import { prisma } from '@/lib/prisma';
+import { getServerSession } from 'next-auth';
+import { redirect } from 'next/navigation';
+import AuthCheck from '@/components/AuthCheck';
+import { authOptions } from "./api/auth/[...nextauth]/route"
 
-export default async function Home() {
-  const session = await getServerSession();
+export default async function Users() {
+  const users = await prisma.user.findMany();
 
+  const session = await getServerSession(authOptions);
   if (!session) {
-    // // redirect('/api/auth/signin');
-    // console.log(session);
-    // return <div>You must be signed in...</div>
-  } 
-    
+    // redirect('/api/auth/signin');
+    return <div>You must sign in to see content...</div>;
+  }
+
   return (
-    <main className={styles.main}>
-      <h1 className={styles.title}>I think you're logged in?</h1>
-    </main>
-  )
-    
+    <AuthCheck>
+
+      <div className={styles.grid}>
+        {users.map((user) => {
+          return <UserCard key={user.id} {...user} />;
+        })}
+      </div>
+    </AuthCheck>
+
+  );
 }
-  

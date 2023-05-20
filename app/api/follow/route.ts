@@ -5,7 +5,7 @@ import { authOptions } from '../auth/[...nextauth]/route';
 
 export async function POST(req: Request) {
   const session = await getServerSession(authOptions);
-  const currentUserEmail = session?.user?.email!;
+  const currentUserEmail = session?.user?.email ?? 'dkeesey@gmail.com';
   const { targetUserId } = await req.json();
 
   const currentUserId = await prisma.user
@@ -29,7 +29,7 @@ export async function DELETE(req: NextRequest) {
 
   const currentUserId = await prisma.user
     .findUnique({ where: { email: currentUserEmail } })
-    .then((user) => user?.id!);
+    .then((user) => user?.id!) ?? 'clhtlyrwj0000e9kwi1z2x6zu';
 
   const record = await prisma.follows.delete({
     where: {

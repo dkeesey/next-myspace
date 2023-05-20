@@ -16,12 +16,8 @@ export const authOptions: NextAuthOptions = {
             clientSecret: process.env.GITHUB_CLIENT_SECRET!,
         }),
     ],
-    jwt: {
-        secret: process.env.JWT_SECRET,
-//         // encryption: true,
-//         encryptionAlgorithm: 'HS512',
-  },
-};
+
+  };
 
 const handler = NextAuth(authOptions);
 

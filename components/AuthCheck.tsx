@@ -10,6 +10,6 @@ export default function AuthCheck({ children }: { children: React.ReactNode }) {
     if (status === 'authenticated') {
         return <>{children}</>
     } else {
-        return <>You MUST be Logged In to see this</>
+        return <></>
     }
 }
